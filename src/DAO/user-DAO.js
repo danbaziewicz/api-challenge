@@ -35,7 +35,7 @@ const daoUser = {
         `
 
         return new Promise((resolve, reject) => {
-            db.query(INSERT_USER, user.name, user.birth_date, user.email, user.address,
+            db.query(INSERT_USER, [user.name, user.birth_date, user.email, user.address],
                 (error) => {
                     if (error) {
                         reject(error)
@@ -48,7 +48,7 @@ const daoUser = {
     },
 
     updateUser: (id, newUser) => {
-        const UPDATE_USER = `UPDATE USER
+        const UPDATE_USER = `UPDATE USERS
         SET name = ?,
         birth_date = ?,
         email = ?,
@@ -56,7 +56,7 @@ const daoUser = {
         WHERE id = ?`
 
         return new Promise((resolve, reject) => {
-            db.query(UPDATE_USER, newUser.name, newUser.birth_date, newUser.email, newUser.address, id,
+            db.query(UPDATE_USER, [newUser.name, newUser.birth_date, newUser.email, newUser.address, id],
                 (error) => {
                     if (error) {
                         reject(error)
